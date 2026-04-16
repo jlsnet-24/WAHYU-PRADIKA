@@ -12,7 +12,6 @@ body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #f3ecff, #dcccff);
-    overflow: hidden;
 }
 
 /* OPENING */
@@ -26,11 +25,6 @@ body {
     align-items: center;
     flex-direction: column;
     color: white;
-}
-
-.opening h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 42px;
 }
 
 button {
@@ -57,13 +51,12 @@ button {
     border-radius: 20px;
     padding: 25px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 /* TEXT */
 .title {
     font-family: 'Great Vibes', cursive;
-    font-size: 36px;
+    font-size: 34px;
     color: #5a2ea6;
 }
 
@@ -82,22 +75,6 @@ button {
 .message {
     font-size: 13px;
     line-height: 1.7;
-    margin-top: 10px;
-}
-
-/* FLOWER */
-.flower {
-    position: absolute;
-    top: -50px;
-    font-size: 18px;
-    animation: fall linear infinite;
-    color: #caaaff;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh);
-    }
 }
 </style>
 </head>
@@ -125,7 +102,7 @@ button {
         <div class="message">
             Hari ini bukan sekadar tentang pencapaian,<br><br>
             tapi tentang perjalanan luar biasa yang akhirnya menemukan titik terangnya.<br><br>
-            Kamu hebat, kamu kuat, dan kamu layak untuk semua ini ✨
+            Kamu hebat dan layak untuk semua ini ✨
         </div>
 
         <div style="margin-top:15px;font-size:12px;">
@@ -135,40 +112,28 @@ button {
     </div>
 </div>
 
-<!-- AUDIO -->
+<!-- AUDIO GOOGLE DRIVE -->
 <audio id="musik" loop>
-    <source src="musik.mp3" type="audio/mpeg">
+    <source src="https://docs.google.com/uc?export=open&id=1cKXUyZkmDsCCNwid94kTNnwhiLnr4v0s" type="audio/mpeg">
 </audio>
 
 <script>
 function playMusic() {
     let audio = document.getElementById("musik");
 
-    // tampilkan halaman
     document.getElementById("open").style.display = "none";
     document.getElementById("main").style.display = "flex";
 
-    // PLAY WAJIB DI SINI (klik user)
     audio.volume = 0.5;
 
     audio.play().then(() => {
-        console.log("Musik berhasil diputar");
+        console.log("musik jalan");
     }).catch(() => {
         alert("Klik sekali lagi untuk memutar musik");
         document.body.onclick = function() {
             audio.play();
         }
     });
-}
-
-/* bunga jatuh */
-for (let i = 0; i < 20; i++) {
-    let f = document.createElement("div");
-    f.className = "flower";
-    f.innerHTML = "❀";
-    f.style.left = Math.random()*100 + "vw";
-    f.style.animationDuration = (5 + Math.random()*5) + "s";
-    document.body.appendChild(f);
 }
 </script>
 
