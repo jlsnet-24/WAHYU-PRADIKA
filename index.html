@@ -11,7 +11,7 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #f3ecff, #dcccff);
+    background: linear-gradient(135deg, #f3ecff, #dcccff);
     overflow: hidden;
 }
 
@@ -20,134 +20,84 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #2e1a47, #4b2c7a);
+    background: #2e1a47;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 999;
     color: white;
-    text-align: center;
 }
 
 .opening h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 45px;
-    letter-spacing: 2px;
+    font-size: 42px;
 }
 
-.opening button {
+button {
     margin-top: 20px;
-    padding: 12px 30px;
+    padding: 12px 28px;
     border: none;
-    border-radius: 30px;
+    border-radius: 25px;
     background: #b999ff;
     color: white;
     cursor: pointer;
-    box-shadow: 0 0 15px #b999ff;
 }
 
 /* MAIN */
-.container {
+.main {
     display: none;
     height: 100vh;
     justify-content: center;
     align-items: center;
 }
 
-/* CARD */
 .card {
-    width: 350px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 25px;
-    padding: 28px;
+    width: 330px;
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
     text-align: center;
-    box-shadow: 0 15px 40px rgba(100,50,150,0.25);
-    backdrop-filter: blur(5px);
-    animation: fadeIn 1.5s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* TITLE */
+/* TEXT */
 .title {
     font-family: 'Great Vibes', cursive;
-    font-size: 40px;
+    font-size: 36px;
     color: #5a2ea6;
 }
 
-.sub {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 10px;
-}
-
-/* PHOTO */
 .photo img {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 20px;
-    border: 5px solid #e6dbff;
+    width: 140px;
+    height: 140px;
+    border-radius: 15px;
     margin: 15px 0;
-    box-shadow: 0 0 20px rgba(150,100,255,0.4);
 }
 
-/* NAME */
 .name {
     font-weight: bold;
-    font-size: 18px;
     color: #6a3cc9;
 }
 
-/* MESSAGE */
 .message {
     font-size: 13px;
-    line-height: 1.8;
-    color: #444;
-    margin-top: 12px;
+    line-height: 1.7;
+    margin-top: 10px;
 }
 
-/* FROM */
-.from {
-    margin-top: 20px;
-    font-size: 12px;
-    color: #777;
-}
-
-/* FLOWERS */
+/* FLOWER */
 .flower {
     position: absolute;
     top: -50px;
     font-size: 18px;
-    color: #caaaff;
     animation: fall linear infinite;
+    color: #caaaff;
 }
 
 @keyframes fall {
     to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
+        transform: translateY(110vh);
     }
-}
-
-/* SPARKLE */
-.sparkle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #fff;
-    border-radius: 50%;
-    animation: blink 2s infinite;
-}
-
-@keyframes blink {
-    0%,100% {opacity: 0;}
-    50% {opacity: 1;}
-}
-
-/* ANIMATION */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
 }
 </style>
 </head>
@@ -155,18 +105,16 @@ body {
 <body>
 
 <!-- OPENING -->
-<div class="opening" id="opening">
+<div class="opening" id="open">
     <h1>For Someone Special 💜</h1>
-    <p>Klik untuk buka</p>
-    <button onclick="start()">Buka</button>
+    <button onclick="playMusic()">Buka</button>
 </div>
 
 <!-- MAIN -->
-<div class="container" id="main">
+<div class="main" id="main">
     <div class="card">
 
         <div class="title">Happy Semprotulation</div>
-        <div class="sub">my favorite person 💜</div>
 
         <div class="photo">
             <img src="https://i.ibb.co/HfMmR3Fx/image.jpg">
@@ -177,14 +125,10 @@ body {
         <div class="message">
             Hari ini bukan sekadar tentang pencapaian,<br><br>
             tapi tentang perjalanan luar biasa yang akhirnya menemukan titik terangnya.<br><br>
-            Semua lelah, semua usaha, semua doa yang diam-diam kamu perjuangkan…<br><br>
-            akhirnya terjawab dengan indah.<br><br>
-            Semoga langkahmu ke depan semakin bersinar,<br>
-            dan kebahagiaan selalu menemukan jalannya menuju kamu.<br><br>
             Kamu hebat, kamu kuat, dan kamu layak untuk semua ini ✨
         </div>
 
-        <div class="from">
+        <div style="margin-top:15px;font-size:12px;">
             Dari: <b>Nama Kamu</b>
         </div>
 
@@ -192,37 +136,39 @@ body {
 </div>
 
 <!-- AUDIO -->
-<audio id="bgm" loop>
+<audio id="musik" loop>
     <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function start() {
-    document.getElementById("opening").style.display = "none";
+function playMusic() {
+    let audio = document.getElementById("musik");
+
+    // tampilkan halaman
+    document.getElementById("open").style.display = "none";
     document.getElementById("main").style.display = "flex";
 
-    let music = document.getElementById("bgm");
-    music.volume = 0.5;
-    music.play();
+    // PLAY WAJIB DI SINI (klik user)
+    audio.volume = 0.5;
+
+    audio.play().then(() => {
+        console.log("Musik berhasil diputar");
+    }).catch(() => {
+        alert("Klik sekali lagi untuk memutar musik");
+        document.body.onclick = function() {
+            audio.play();
+        }
+    });
 }
 
 /* bunga jatuh */
-for (let i = 0; i < 30; i++) {
-    let flower = document.createElement("div");
-    flower.classList.add("flower");
-    flower.innerHTML = "❀";
-    flower.style.left = Math.random() * 100 + "vw";
-    flower.style.animationDuration = (5 + Math.random() * 5) + "s";
-    document.body.appendChild(flower);
-}
-
-/* sparkle */
 for (let i = 0; i < 20; i++) {
-    let s = document.createElement("div");
-    s.classList.add("sparkle");
-    s.style.top = Math.random() * 100 + "vh";
-    s.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(s);
+    let f = document.createElement("div");
+    f.className = "flower";
+    f.innerHTML = "❀";
+    f.style.left = Math.random()*100 + "vw";
+    f.style.animationDuration = (5 + Math.random()*5) + "s";
+    document.body.appendChild(f);
 }
 </script>
 
